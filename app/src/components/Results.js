@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Results = ({ foundPRs }) => {
-  // {
-  //   "number":"19156",
-  //   "filenames":["guide/spanish/vim/basic-usage/index.md"]
-  // }
   const elements = foundPRs.map((foundPR) => {
     const { number, filenames } = foundPR;
     const files = filenames.map((filename, index) => {

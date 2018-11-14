@@ -15,10 +15,6 @@ const Container = styled.div`
 `;
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   state = {
     number: null,
     foundPRs: []
