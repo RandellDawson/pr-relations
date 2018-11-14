@@ -29,7 +29,7 @@ class App extends Component {
   handleButtonClick = () => {
     const { number } = this.state;
 
-    fetch(`https://terrific-chimpanzee.glitch.me/test/${number}`)
+    fetch(`https://pr-relations.glitch.me/test/${number}`)
       .then((response) => response.json())
       .then(({ foundPRs }) => {
         console.log(foundPRs);
