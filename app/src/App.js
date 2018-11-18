@@ -66,7 +66,7 @@ class App extends Component {
 
     return (
       <Container>
-        <Input ref={inputRef} value={number} onInputChange={handleInputEvent} />
+        <Input ref={inputRef} value={number} onInputEvent={handleInputEvent} />
         <button onClick={handleButtonClick}>Search</button>
         <Results foundPRs={foundPRs} />
       </Container>
