@@ -5,6 +5,7 @@ const Input = React.forwardRef((props, ref) => (
     type="text"
     placeholder="PR #"
     onChange={props.onInputChange}
+    onKeyPress={props.onInputChange}
     value={props.value}
     ref={ref}
   />
