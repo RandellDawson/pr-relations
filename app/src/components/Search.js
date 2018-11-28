@@ -6,7 +6,8 @@ import Results from './Results';
 class Search extends Component {
   state = {
     number: '19218',
-    foundPRs: [],
+    selectedOption: 'pr',
+    foundPRs: []
   };
 
   clearObj = { number: '', foundPRs: [] };
@@ -31,13 +32,19 @@ class Search extends Component {
     this.searchPRs(number);
   }
 
-  searchPRs = (number) => {
-    fetch(`https://pr-relations.glitch.me/pr/${number}`)
+  handleOptionChange(changeEvent) {
+    this.setState((prevState) => ({ selectedOption: changeEvent.target.value }));
+  }
+
+  searchPRs = (type, value) => {
+    const baseUrl = 'https://pr-relations.glitch.me/';
+    const fetchUrl = baseUrl + (type === 'pr' ? `pr/${value}` : `search/?value=${value}`);
+    fetch(fetchUrl)
     .then((response) => response.json())
     .then(({ ok, foundPRs }) => {
       if (ok) {
         if (!foundPRs.length) {
-          foundPRs.push({ number: 'No PRs with matching files', filenames: [] });
+          foundPRs.push({ number: 'No matching results', filenames: [] });
         }
         this.setState((prevState) => ({ foundPRs }));
       }
@@ -55,6 +62,24 @@ class Search extends Component {
     const { number, foundPRs } = state;
     return (
       <>
+        <label>
+          <input
+            type="radio"
+            value="pr"
+            checked={this.state.selectedOption === 'pr'}
+            onChange={this.handleOptionChange}
+          />
+          PR #
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="filename"
+            checked={this.state.selectedOption === 'filename'}
+            onChange={this.handleOptionChange}
+          />
+          Filename
+        </label>
         <Input ref={inputRef} value={number} onInputEvent={handleInputEvent} />
         <button onClick={handleButtonClick}>Search</button>
         <Results foundPRs={foundPRs} />
