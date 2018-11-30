@@ -5,8 +5,7 @@ import Results from './Results';
 import SearchOption from './SearchOption';
 class Search extends Component {
   state = {
-    number: '19218',
-    // selectedOption: 'filename',
+    number: '',
     selectedOption: 'pr',
     foundPRs: []
   };
@@ -81,28 +80,3 @@ class Search extends Component {
 }
 
 export default Search;
-
-/*
-<label>
-  <input
-    id="pr"
-    name="searchType"
-    type="radio"
-    value="pr"
-    checked={this.state.selectedOption === 'pr'}
-    onChange={this.handleOptionChange}
-  />
-  PR #
-</label>
-<label>
-  <input
-    id="filename"
-    name="searchType"
-    type="radio"
-    value="filename"
-    checked={this.state.selectedOption === 'filename'}
-    onChange={this.handleOptionChange}
-  />
-  Filename
-</label>
-*/
