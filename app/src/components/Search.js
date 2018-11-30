@@ -5,7 +5,7 @@ import Results from './Results';
 
 class Search extends Component {
   state = {
-    number: '19218',
+    number: '',
     foundPRs: [],
   };
 
