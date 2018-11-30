@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import Input from './Input';
 import Results from './Results';
-
+import SearchOption from './SearchOption';
 class Search extends Component {
   state = {
     number: '19218',
+    // selectedOption: 'filename',
     selectedOption: 'pr',
     foundPRs: []
   };
@@ -32,8 +33,9 @@ class Search extends Component {
     this.searchPRs(number);
   }
 
-  handleOptionChange(changeEvent) {
-    this.setState((prevState) => ({ selectedOption: changeEvent.target.value }));
+  handleOptionChange = (changeEvent) => {
+    const selectedOption = changeEvent.target.value;
+    this.setState((prevState) => ({ selectedOption }));
   }
 
   searchPRs = (type, value) => {
@@ -58,28 +60,18 @@ class Search extends Component {
   }
 
   render() {
-    const { handleButtonClick, handleInputEvent, inputRef, state } = this;
-    const { number, foundPRs } = state;
+    const { handleButtonClick, handleInputEvent, inputRef, handleOptionChange, state } = this;
+    const { number, foundPRs, selectedOption } = state;
     return (
       <>
-        <label>
-          <input
-            type="radio"
-            value="pr"
-            checked={this.state.selectedOption === 'pr'}
-            onChange={this.handleOptionChange}
-          />
-          PR #
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="filename"
-            checked={this.state.selectedOption === 'filename'}
-            onChange={this.handleOptionChange}
-          />
-          Filename
-        </label>
+        <div>
+          <SearchOption value="pr" onOptionChange={handleOptionChange} selectedOption={selectedOption}>
+            PR #
+          </SearchOption>
+          <SearchOption value="filename" onOptionChange={handleOptionChange} selectedOption={selectedOption}>
+            Filename
+          </SearchOption>
+        </div>
         <Input ref={inputRef} value={number} onInputEvent={handleInputEvent} />
         <button onClick={handleButtonClick}>Search</button>
         <Results foundPRs={foundPRs} />
@@ -89,3 +81,28 @@ class Search extends Component {
 }
 
 export default Search;
+
+/*
+<label>
+  <input
+    id="pr"
+    name="searchType"
+    type="radio"
+    value="pr"
+    checked={this.state.selectedOption === 'pr'}
+    onChange={this.handleOptionChange}
+  />
+  PR #
+</label>
+<label>
+  <input
+    id="filename"
+    name="searchType"
+    type="radio"
+    value="filename"
+    checked={this.state.selectedOption === 'filename'}
+    onChange={this.handleOptionChange}
+  />
+  Filename
+</label>
+*/
