@@ -4,7 +4,9 @@
   "description": "Pull request query tool.",
   "main": "index.js",
   "scripts": {
-    "setup": "npm install && npm install app"
+    "setup": "npm-run-all install:client install:server",
+    "install:client": "cd ./client && npm install && cd ../",
+    "install:server": "cd ./server && npm install && cd ../"
   },
   "repository": {
     "type": "git",
@@ -13,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/RandellDawson/pr-relations/issues"
   },
-  "homepage": "https://github.com/RandellDawson/pr-relations#readme"
+  "homepage": "https://github.com/RandellDawson/pr-relations#readme",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }
